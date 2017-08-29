@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chengbinbbs.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.chengbinbbs.model.User">
+    <result column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="age" property="age" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, name, age
+  </sql>
+
+  <select id="findByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where name = #{name}
+  </select>
+
+  <insert id="insert" parameterType="com.chengbinbbs.model.User" >
+    insert into user (id, name, age
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}
+      )
+  </insert>
+
+</mapper>
